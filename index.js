@@ -11,7 +11,7 @@ app.set('port', (process.env.PORT || 9001));
 app.set('view engine', 'jade');
 
 app.get('/', function(req, res){
-  res.sendfile('views/index.html')
+  res.send('It Works!')
 });
 
 app.post('/post', function(req, res){
