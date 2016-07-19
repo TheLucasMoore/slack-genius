@@ -38,7 +38,7 @@ app.post('/post', function(req, res){
     else {
       var body = {
         response_type: "in_channel",
-        text: "There was an error!"
+        text: "There was an error!" + error
       };
       res.send(body)
     }
