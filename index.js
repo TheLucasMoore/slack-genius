@@ -8,9 +8,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('port', (process.env.PORT || 9001));
+app.set('view engine', 'jade');
 
 app.get('/', function(req, res){
-  res.send('It works!');
+  res.sendfile('views/index.html')
 });
 
 app.post('/post', function(req, res){
