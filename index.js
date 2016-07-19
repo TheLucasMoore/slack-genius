@@ -8,10 +8,40 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('port', (process.env.PORT || 9001));
-app.set('view engine', 'jade');
 
 app.get('/', function(req, res){
   res.send('It Works!')
+});
+
+app.post('/spotify', function(req, res){
+  var artist = req.body.text
+  var url = 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artist + '&api_key=' + process.env.LAST_FM + '&format=json'
+
+  request(url, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var data = JSON.parse(body);
+      var bio = data.artist.bio.summary.split("<a")[0]
+
+      var body = {
+        response_type: "in_channel",
+        text: bio,
+        attachments: [
+          {
+            text: "Spotify Link Here"
+          }
+        ]
+      };
+
+      response.send(body);
+    }
+    else {
+      var body = {
+        response_type: "in_channel",
+        text: "There was an error! " + error
+      };
+      res.send(body)
+    }
+  })
 });
 
 app.post('/post', function(req, res){
@@ -38,7 +68,7 @@ app.post('/post', function(req, res){
     else {
       var body = {
         response_type: "in_channel",
-        text: "There was an error!" + error
+        text: "There was an error! " + error
       };
       res.send(body)
     }
