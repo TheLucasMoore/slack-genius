@@ -26,20 +26,19 @@ app.post('/spotify', function(req, res){
       // request(spotifyUrl, function (error, response, body) {
       //   var spotData = JSON.parse(body);
       //   var spotlink = spotData.artists.items[0].external_urls.spotify
-        
-        var body = {
-        response_type: "in_channel",
-        text: bio[0],
-        attachments: [
-            {
-            text: "spotlink"
-            }
-          ]
-        }
+      // })
+    
+      var body = {
+      response_type: "in_channel",
+      text: bio[0],
+      attachments: [
+          {
+          text: "spotlink"
+          }
+        ]
+      };
 
-      res.send(body)
-      
-      //})
+      res.send("body")
     }
     else {
       var body = {
