@@ -32,13 +32,13 @@ app.post('/spotify', function(req, res){
         response_type: "in_channel",
         text: bio[0],
         attachments: [
-          {
+            {
             text: spotlink
-          }
-        ]
-      }
-      res.send(body);
+            }
+          ]
+        }
       })
+      res.send(body);
     }
     else {
       var body = {
