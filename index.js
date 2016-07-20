@@ -21,7 +21,6 @@ app.post('/spotify', function(req, res){
     if (!error && response.statusCode == 200) {
       var data = JSON.parse(body);
       var bio = data.artist.bio.summary.split("<a")
-
       var body = {
         response_type: "in_channel",
         text: bio[0],
@@ -31,8 +30,7 @@ app.post('/spotify', function(req, res){
           }
         ]
       };
-
-      response.send(body);
+      res.send(body);
     }
     else {
       var body = {
