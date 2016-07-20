@@ -16,7 +16,7 @@ app.get('/', function(req, res){
 app.post('/spotify', function(req, res){
   var artist = req.body.text.replace(" ", "+")
   var url = 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artist + '&api_key=' + process.env.LAST_FM + '&format=json'
-  var spotifyUrl = "https://api.spotify.com/v1/search?q=" + artist "&type=artist"
+  var spotifyUrl = "https://api.spotify.com/v1/search?q=" + artist + "&type=artist"
 
   request(url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
