@@ -29,7 +29,7 @@ app.post('/spotify', function(req, res){
     
       var body = {
       response_type: "in_channel",
-      text: bio[0] \nspotlink,
+      text: bio[0] spotlink,
       };
       res.send(body)
       })
