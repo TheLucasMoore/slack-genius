@@ -16,16 +16,17 @@ app.get('/', function(req, res){
 app.post('/spotify', function(req, res){
   var artist = req.body.text.replace(" ", "+")
   var url = 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artist + '&api_key=' + process.env.LAST_FM + '&format=json'
+  var spotifyUrl = "https://api.spotify.com/v1/search?q=" + artist "&type=artist"
 
   request(url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var data = JSON.parse(body);
-      var bio = data.artist.bio.summary.split("<a")
-      var spotifyUrl = "https://api.spotify.com/v1/search?q=" + artist "&type=artist"
-
+      var bio = data.artist.bio.summary.split("<a");
+      
       request(spotifyUrl, function (error, response, body) {
         var spotData = JSON.parse(body);
         var link = spotData.artists.items[0].external_urls.spotify
+        })
 
         var body = {
         response_type: "in_channel",
@@ -36,8 +37,8 @@ app.post('/spotify', function(req, res){
           }
         ]
       };
-      res.send(body);
-      })
+
+    res.send(body);
     }
     else {
       var body = {
