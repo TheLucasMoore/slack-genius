@@ -27,7 +27,6 @@ app.post('/spotify', function(req, res){
         var spotData = JSON.parse(body);
         var spotlink = spotData.artists.items[0].external_urls.spotify
         
-
         var body = {
         response_type: "in_channel",
         text: bio[0],
@@ -37,8 +36,8 @@ app.post('/spotify', function(req, res){
             }
           ]
         }
-      })
       res.send(body);
+      })
     }
     else {
       var body = {
