@@ -14,17 +14,17 @@ app.get('/', function(req, res){
 });
 
 app.post('/spotify', function(req, res){
-  var artist = req.body.text
+  var artist = req.body.text.replace(" ", "+")
   var url = 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artist + '&api_key=' + process.env.LAST_FM + '&format=json'
 
   request(url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var data = JSON.parse(body);
-      var bio = data.artist.bio.summary.split("<a")[0]
+      var bio = data.artist.bio.summary.split("<a")
 
       var body = {
         response_type: "in_channel",
-        text: bio,
+        text: bio[0],
         attachments: [
           {
             text: "Spotify Link Here"
