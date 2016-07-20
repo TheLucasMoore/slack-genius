@@ -21,16 +21,23 @@ app.post('/spotify', function(req, res){
     if (!error && response.statusCode == 200) {
       var data = JSON.parse(body);
       var bio = data.artist.bio.summary.split("<a")
-      var body = {
+      var spotifyUrl = "https://api.spotify.com/v1/search?q=" + artist "&type=artist"
+
+      request(spotifyUrl, function (error, response, body) {
+        var spotData = JSON.parse(body);
+        var link = spotData.artists.items[0].external_urls.spotify
+
+        var body = {
         response_type: "in_channel",
         text: bio[0],
         attachments: [
           {
-            text: "Spotify Link Here"
+            text: link
           }
         ]
       };
       res.send(body);
+      })
     }
     else {
       var body = {
