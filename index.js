@@ -54,13 +54,21 @@ app.post('/post', function(req, res){
   request(parsed_url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var data = JSON.parse(body);
-      var first_url = data.response.hits[0].result.url;
+      var song_url = data.response.hits[0].result.url;
+      var song_title = data.response.hits[0].result.full_title
+      var song_image = data.response.hits[0].result.header_image_thumbnail_url;
 
       var body = {
         response_type: "in_channel",
-        text: first_url
+        text: "Song Found"
+        attachments: [
+        {
+          title: song_title,
+          title_link: song_url,
+          thumb_url: song_image
+        }
+        ]
       };
-
       res.send(body);
     }
     else {
