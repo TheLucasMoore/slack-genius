@@ -52,7 +52,7 @@ app.post('/genius', function(req, res){
   });
 
   request(parsed_url, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
+    if (!error && response.statusCode == 200 && body !== null) {
       var data = JSON.parse(body);
       var song_url = data.response.hits[0].result.url;
       var song_title = data.response.hits[0].result.full_title
