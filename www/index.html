@@ -19,7 +19,6 @@
       <div class="twelve columns">
         <header data-aos="zoom-in">
         <h1>Mewsic</h1>
-        <!-- <img src="images/mewsic_small.gif"> -->
         <p>The *Mew* Musical Slackbot</p>
         </header>
       </div>
@@ -28,12 +27,13 @@
     <div class="row">
       <div class="twelve columns">
         <section id="about">
-          <h2>What does it do?</h2>
+          <h2>What does this Slack Bot do?</h2>
+          <img src="images/mewsic.gif">
           <p>
           Let the Mewsic Bot come and blast some tunes at you. Mewsic can tell you about a new artist,
-         grab song lyrics and find local concert dates, all from within Slack. Here's how it works:
+         grab song lyrics and find local concert dates, all from within Slack. Read on to see all the features.
           </p>
-          <img src="images/slack.png">
+          <img id="slack-button" src="images/slack.png">
         </section>
       </div>
     </div>
@@ -43,11 +43,13 @@
         <section id="spotify" data-aos="zoom-in">
           <h2>/Spotify Slash Command</h2>
           <p>
-          When you discover an amazing new artist, it's now easy to tell your whole team. After <a href="#">installing the Mewsic Bot</a> simply type:<br><br>
+          When you discover an amazing new artist, it's now easy to tell everyone. After <a href="#">installing the Mewsic Bot</a> simply type:<br><br>
           /spotify *ARTIST NAME*<br><br>
          into your Slack Channel. and Mew will use it's mystical powers to send you the band biography and embed their top Spotify tracks right into the channel, so everyone can realize instantly that you have awesome taste in music. The response looks like this:
           </p>
           <img src="images/spotify.gif">
+          <p>Convinced yet?</p>
+          <img id="slack-button" src="images/slack.png">
         </section>
       </div>
     </div>
@@ -57,11 +59,13 @@
         <section id="lyrics" data-aos="zoom-in">
           <h2>/Lyrics Command</h2>
           <p>
-          The music is moving you to tears and you must learn every single word! Now it's a command away. Simply say:<br><br>
+          The music is moving you to tears and you must learn every single word! Now it's a command away. Simply say<br><br>
           /lyrics *ARTIST NAME (song name)*<br><br>
           Now you'll be sent the Genius.com link to that song, so you can pour over the spiritual depths of the song.
           </p>
           <a href="http://genius.com/The-tallest-man-on-earth-love-is-all-lyrics"><img src="images/lyrics.png"></a>
+          <p>You can install it here:</p>
+          <img id="slack-button" src="images/slack.png">
         </section>
       </div>
     </div>
@@ -74,6 +78,23 @@
           Music is best when it's live. Get outside and see your favorite bands in your town. You can request information on any band coming to your city with the /concerts command.<br><br>
           /concerts *YOUR CITY (artist)*<br><br>
           This sends back the top concerts in your town, or if you add an artist it let's you know when they'll be in town. Makin' dreams a reality, eh?
+          </p>
+          <p>Grab it for your team!</p>
+          <img id="slack-button" src="images/slack.png">
+        </section>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="twelve columns">
+        <section id="how" data-aos="zoom-in">
+          <h2>But how does it work?!</h2>
+          <p>
+          I know, it's pretty rad. I built this Slack Bot with Node and Express. It utilizes the Spotify, Last.fm, Genius and SongKick APIs, putting them all in one place. I built this bot for my brothers and myself, but thought I should share it with the world. You can read more about the projects I build <a target="_blank" href="http://dev.thelucasmoore.com">here</a>.
+          <br><br>
+          <3 Lucas<br>
+          hey (at) thelucasmoore.com<br>
+          (by the way, did you find the Missingo?)
           </p>
         </section>
       </div>
