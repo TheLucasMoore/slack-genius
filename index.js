@@ -42,7 +42,7 @@ app.post('/spotify', function(req, res){
   })
 });
 
-app.post('/post', function(req, res){
+app.post('/genius', function(req, res){
   var parsed_url = url.format({
     pathname: 'https://api.genius.com/search',
     query: {
