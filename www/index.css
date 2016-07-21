@@ -4,8 +4,19 @@ body {
   background-position: top center;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
   font-family: 'VT323';
+}
+
+p {
+  font-family: 'VT323';
+}
+
+img {
+  padding: 20px;
+  display: block;
+  margin: auto;
 }
 
 header {
@@ -49,10 +60,10 @@ section h2 {
   padding: 20px;
 }
 
-#about img {
-  padding-bottom: 20px;
-  margin-left: 25%;
-}
+/*#slack-button {
+  display: block;
+  margin: auto;
+}*/
 
 section #spotify img {
   max-width: 90%

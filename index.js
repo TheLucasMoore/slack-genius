@@ -17,7 +17,7 @@ app.post('/spotify', function(req, res){
   var spotifyUrl = "https://api.spotify.com/v1/search?q=" + artist + "&type=artist"
 
   request(url, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
+    if (!error && response.statusCode == 200 && body !== null) {
       var data = JSON.parse(body);
       var bio = data.artist.bio.summary.split("<a");
       
