@@ -59,13 +59,13 @@ app.post('/post', function(req, res){
       var song_image = data.response.hits[0].result.header_image_thumbnail_url;
 
       var body = {
-        response_type: "in_channel",
-        text: "Song Found"
-        attachments: [
+        "response_type": "in_channel",
+        "text": "Song Found"
+        "attachments": [
         {
-          title: song_title,
-          title_link: song_url,
-          thumb_url: song_image
+          "title": song_title,
+          "title_link": song_url,
+          "thumb_url": song_image
         }
         ]
       };
