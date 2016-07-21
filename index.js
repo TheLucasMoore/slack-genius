@@ -60,7 +60,7 @@ app.post('/post', function(req, res){
 
       var body = {
         "response_type": "in_channel",
-        "text": "Song Found"
+        "text": "Song Found",
         "attachments": [
         {
           "title": song_title,
