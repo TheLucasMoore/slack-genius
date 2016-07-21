@@ -29,15 +29,15 @@ header p {
 }
 
 section {
-  background-color: #FFF;
-  background-clip: content-box;
-  border-radius: 50px;
-  border: 20px solid transparent;
-  padding: 3px;
+  background-color: #fff;
+  background-clip: padding-box;
+  border-radius: 20px;
+  border: 10px solid transparent;
+  padding: 20px;
   border-image: url(images/box-border.png);
-  -webkit-border-image: url(images/box-border.png) 40 round; /* Safari 3.1-5 */
-  -o-border-image: url(images/box-border.png) 40 round ; /* Opera 11-12.1 */
-  border-image: url(images/box-border.png) 40 round;
+  -webkit-border-image: url(images/box-border.png) 60 round; /* Safari 3.1-5 */
+  -o-border-image: url(images/box-border.png) 60 round ; /* Opera 11-12.1 */
+  border-image: url(images/box-border.png) 60 round;
 }
 
 section p {
