@@ -1,0 +1,61 @@
+body {
+  width: 100%;
+  background: url("images/poketown.jpg");
+  background-position: top center;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  font-family: 'VT323';
+}
+
+header {
+  margin-top: 5%;
+  text-align: center;
+  height: 210px;
+  background-image: url("images/box-small.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  padding: 20px;
+}
+
+header h1 {
+    padding: 1px;
+    font-size: 30px;
+  }
+
+header p {
+  margin-top: -40px;
+  font-size: 20px;
+}
+
+section {
+  background-color: #FFF;
+  background-clip: content-box;
+  border-radius: 50px;
+  border: 20px solid transparent;
+  padding: 3px;
+  border-image: url(images/box-border.png);
+  -webkit-border-image: url(images/box-border.png) 40 round; /* Safari 3.1-5 */
+  -o-border-image: url(images/box-border.png) 40 round ; /* Opera 11-12.1 */
+  border-image: url(images/box-border.png) 40 round;
+}
+
+section p {
+  padding: 15px;
+  margin-top: -50px;
+  font-size: 16px;
+}
+
+section h2 {
+  padding: 20px;
+}
+
+#about img {
+  padding-bottom: 20px;
+  margin-left: 25%;
+}
+
+section #spotify img {
+  max-width: 90%
+  padding: 10px;
+}

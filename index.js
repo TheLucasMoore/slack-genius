@@ -9,9 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('port', (process.env.PORT || 9001));
 
-app.get('/', function(req, res){
-  res.send('It Works!')
-});
+app.use(express.static('www'));
 
 app.post('/spotify', function(req, res){
   var artist = req.body.text.replace(" ", "+")
