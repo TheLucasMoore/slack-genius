@@ -4,8 +4,8 @@
   
   <link href='https://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
 
-  <link ref="stylesheet" type="text/css" href="node_modules/aos/dist/aos.css" />
-  <script src="node_modules/aos/dist/aos.js"></script> 
+  <link rel="stylesheet" type="text/css" href="aos.css" />
+  <script src="aos.js"></script> 
 
   <link rel="stylesheet" type="text/css" href="index.css">
   <link rel="stylesheet" type="text/css" href="normalize.css">
@@ -17,7 +17,7 @@
   <div class="container">
     <div class="row">
       <div class="twelve columns">
-        <header>
+        <header data-aos="zoom-in">
         <h1>Mewsic</h1>
         <p>The *Mew* Musical Slackbot</p>
         </header>
@@ -39,7 +39,7 @@
 
   <div class="row">
       <div class="twelve columns">
-        <section id="spotify">
+        <section id="spotify" data-aos="zoom-in">
           <h2>/Spotify Slash Command</h2>
           <p>
           When you discover an amazing new artist, it's now easy to tell your whole team. After <a href="#">installing the Mewsic Bot</a> simply type:<br><br>
@@ -53,7 +53,7 @@
 
     <div class="row">
       <div class="twelve columns">
-        <section id="lyrics">
+        <section id="lyrics" data-aos="zoom-in">
           <h2>/Lyrics Command</h2>
           <p>
           The music is moving you to tears and you must learn every single word! Now it's a command away. Simply say:<br><br>
@@ -67,7 +67,7 @@
 
     <div class="row">
       <div class="twelve columns">
-        <section id="concerts">
+        <section id="concerts" data-aos="zoom-in">
           <h2>/Concerts Command</h2>
           <p>
           Music is best when it's live. Get outside and see your favorite bands in your town. You can request information on any band coming to your city with the /concerts command.<br><br>
@@ -79,14 +79,10 @@
     </div>
 
 
-  <!-- <script>
-    AOS.init({
-      offset: 200,
-      duration: 600,
-      easing: 'ease-in-sine',
-      delay: 100,
-    });
-  </script> -->
+  <script>
+    AOS.init();
+  </script>
+
   </div> <!-- end container -->
 </body>
 </html>

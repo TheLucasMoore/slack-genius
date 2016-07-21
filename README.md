@@ -1,52 +1,10 @@
 # Slack Genius
 
-_A Slackbot that searches genius.com_.
+_A Slackbot that searches genius.com and more!_.
 
-![](https://cdn-images-1.medium.com/max/1200/1*dK--YUKXxeLgSuddFUlRWQ.png)
+This Slackbot that receives input through a few [slash commands](https://api.slack.com/slash-commands) and sends a request to an API.
 
-This Slackbot that receives input through a [slash command](https://api.slack.com/slash-commands) and sends a request to an API.
-
-A detailed tutorial about how I built this is on Medium: [https://goo.gl/wDyayI](https://goo.gl/wDyayI)
-
-## Installation
-
-Clone the repo and then install dependencies:
-
-    git clone git@github.com:mager/slack-genius.git
-    cd slack-genius
-    npm i
-
-
-Setup the server (I used Heroku):
-
-    heroku create my-slackbot
-
-
-Set Heroku environment variable for [Genius access token](https://genius.com/api-clients):
-
-    heroku config:add GENIUS_ACCESS=[your Genius access token]
-    git push heroku master
-
-
-Setup Slack slash command:
-
-* Goto `http://[your-slack-team].slack.com/apps/manage/custom-integrations` and add a slash command.
-* Fill in the fields:
-  * _Command_: the name of your slash command (ex: `/genius`)
-  * _URL_: The URL to request when the slash command is run (ex: `https://my-slackbot.herokuapp.com/post`)
-  * _Method_: POST
-  * _Customize Name_: The name of your Slackbot
-  * _Customize Icon_: A custom icon or an emoji
-  * _Autocomplete help text_: Helps users when they start typing `/`
-  * _Descriptive Label_: Provides extra context
-
-
-## Usage
-
-In Slack, send slash commands to /genius:
-
-    /genius Kendrick Lamar Poetic Justice
-
+I started [here](https://goo.gl/wDyayI](https://goo.gl/wDyayI).
 
 ## License
 
