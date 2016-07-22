@@ -100,7 +100,7 @@ app.post('/concert', function(req, res){
         var size = data.resultsPage.totalEntries
         var body;
 
-        if (parseInt(size) >= 1) {
+        if (size !== 0) {
           var eventType = results.event[0].type
           var displayName = results.event[0].displayName
           var uri = results.event[0].uri
