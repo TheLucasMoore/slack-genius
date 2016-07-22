@@ -50,7 +50,7 @@ app.post('/album', function(req, res){
     if (!error && response.statusCode == 200 && body !== null) {
       var data = JSON.parse(body);
       var albumName = data.albums.items[0].name
-      var albumLink = data.albums.items[0].external_urls.href
+      var albumLink = data.albums.items[0].external_urls.spotify
       var albumArt = data.albums.items[0].images[0].url
     }
     var body = {
