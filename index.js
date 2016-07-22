@@ -65,6 +65,7 @@ app.post('/album', function(req, res){
       ]
     };
     res.send(body);
+  });
 }
 
 app.post('/genius', function(req, res){
