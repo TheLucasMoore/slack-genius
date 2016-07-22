@@ -11,7 +11,7 @@ app.set('port', (process.env.PORT || 9001));
 
 app.use('/', express.static('www'));
 
-app.post('/spotify', function(req, res){
+app.post('/artist', function(req, res){
   var artist = req.body.text.replace(" ", "+")
   var url = 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artist + '&api_key=' + process.env.LAST_FM + '&format=json'
   var spotifyUrl = "https://api.spotify.com/v1/search?q=" + artist + "&type=artist"
@@ -41,6 +41,32 @@ app.post('/spotify', function(req, res){
     }
   })
 });
+
+app.post('/album', function(req, res){
+  var album = req.body.text.replace(" ", "+")
+  var url = 'https://api.spotify.com/v1/search?q=' + album + '&type=album'
+
+  request(url, function (error, response, body) {
+    if (!error && response.statusCode == 200 && body !== null) {
+      var data = JSON.parse(body);
+      var albumName = data.albums.items[0].name
+      var albumLink = data.albums.items[0].external_urls.href
+      var albumArt = data.albums.items[0].images[0].url
+    }
+    var body = {
+        "response_type": "in_channel",
+        "text": albumLink,
+        "attachments": [
+        {
+          "title": albumName,
+          "title_link": albumLink,
+          "image_url": albumArt
+        }
+        ]
+      };
+      res.send(body);
+    }
+}
 
 app.post('/genius', function(req, res){
   var parsed_url = url.format({
@@ -117,7 +143,7 @@ app.post('/concert', function(req, res){
         } else {
           body = {
           response_type: "in_channel",
-          text: "It doesn't seem like" + artist + " is coming to " + location + " anytime soon."
+          text: "It doesn't seem like" + artist + " will be in " + location + " anytime soon."
           };
         }
         res.send(body)
