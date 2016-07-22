@@ -88,6 +88,8 @@ app.post('/concert', function(req, res){
     if (!error && response.statusCode == 200 && body !== null) {
       var data = JSON.parse(body);
       var results = data.resultsPage.results
+      var ip = data.resultsPage.clientLocation.ip
+      var metroArea = data.resultsPage.clientLocation.metroAreaId
       var body;
 
       if (results.length > 0) {
@@ -106,10 +108,9 @@ app.post('/concert', function(req, res){
       } else {
         body = {
         response_type: "in_channel",
-        text: "It doesn't seem like " + req.body.text + "is coming to your city anytime soon..."
+        text: "It doesn't seem like " + req.body.text + "is coming to " + metroArea + " anytime soon..."
         };
       }
-
       res.send(body)
     }
     else {
