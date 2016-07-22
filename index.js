@@ -49,27 +49,29 @@ app.post('/album', function(req, res){
   request(url, function (error, response, body) {
     if (!error && response.statusCode == 200 && body !== null) {
       var data = JSON.parse(body);
-      var albumName = data.albums.items[0].name
-      var albumLink = data.albums.items[0].external_urls.spotify
-      var albumArt = data.albums.items[0].images[0].url
-      var body
+      var body;
 
-      body = {
-        "response_type": "in_channel",
-        "text": albumLink,
-        "attachments": [
-        {
-          "title": albumName,
-          "image_url": albumArt
+      if (data.album.items.size > 0) {
+        var albumName = data.albums.items[0].name
+        var albumLink = data.albums.items[0].external_urls.spotify
+        var albumArt = data.albums.items[0].images[0].url
+        body = {
+          "response_type": "in_channel",
+          "text": albumLink,
+          "attachments": [
+          {
+            "title": albumName,
+            "image_url": albumArt
+          }]
+          };
+          res.send(body);
         }
-        ]
-        };
     } else {
       body = {
         response_type: "in_channel",
         text: "There was an error! " + error
       };
-    res.send(body);
+      res.send(body);
     }
   });
 });
