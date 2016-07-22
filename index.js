@@ -97,20 +97,30 @@ app.post('/concert', function(req, res){
       if (!error && response.statusCode == 200 && body !== null) {
         var data = JSON.parse(body);
         var results = data.resultsPage.results
-        // var size = data.resultsPage.totalEntries
-        var eventType = results.event[0].type
-        var displayName = results.event[0].displayName
-        var uri = results.event[0].uri
+        var size = data.resultsPage.totalEntries
+        var body;
 
-        body = {
-        "response_type": "in_channel",
-        "text": "I found a " + eventType,
-        "attachments": [
-        {
-          "title": displayName,
-          "title_link": uri
-          }]
-        };
+        if (parseInt(size) >= 1) {
+          var eventType = results.event[0].type
+          var displayName = results.event[0].displayName
+          var uri = results.event[0].uri
+
+          body = {
+          "response_type": "in_channel",
+          "text": "I found a " + eventType,
+          "attachments": [
+          {
+            "title": displayName,
+            "title_link": uri
+            }]
+          };
+
+        } else {
+          body = {
+          response_type: "in_channel",
+          text: "It doesn't seem like " + artist + " is coming to " + locationId + " anytime soon..."
+          };
+        }
         res.send(body)
       }
     })
