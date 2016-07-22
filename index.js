@@ -11,6 +11,11 @@ app.set('port', (process.env.PORT || 9001));
 
 app.use('/', express.static('www'));
 
+var errorBody = { // in the club gettin' tipsy. </50centlyrics>
+  response_type: "in_channel",
+  text: "There was an error!"
+};
+
 app.post('/artist', function(req, res){
   var artist = req.body.text.replace(" ", "+")
   var url = 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artist + '&api_key=' + process.env.LAST_FM + '&format=json'
@@ -33,11 +38,7 @@ app.post('/artist', function(req, res){
       })
     }
     else {
-      var body = {
-        response_type: "in_channel",
-        text: "There was an error!"
-      };
-      res.send(body)
+      res.send(errorBody)
     }
   })
 });
@@ -65,13 +66,11 @@ app.post('/album', function(req, res){
           }]
           };
           res.send(body);
+        } else {
+          res.send(errorBody);
         }
     } else {
-      body = {
-        response_type: "in_channel",
-        text: "There was an error! " + error
-      };
-      res.send(body);
+      res.send(errorBody);
     }
   });
 });
@@ -105,11 +104,7 @@ app.post('/genius', function(req, res){
       res.send(body);
     }
     else {
-      var body = {
-        response_type: "in_channel",
-        text: "There was an error! " + error
-      };
-      res.send(body)
+      res.send(errorBody)
     }
   });
 });
