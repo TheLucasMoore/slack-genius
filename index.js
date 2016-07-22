@@ -104,7 +104,7 @@ app.post('/concert', function(req, res){
           var eventType = results.event[0].type
           var displayName = results.event[0].displayName
           var uri = results.event[0].uri
-          
+
           body = {
           "response_type": "in_channel",
           "text": "I found a " + eventType,
@@ -117,7 +117,7 @@ app.post('/concert', function(req, res){
         } else {
           body = {
           response_type: "in_channel",
-          text: "It doesn't seem like " + artist + " is coming to " + location + " anytime soon..."
+          text: "It doesn't seem like " + artist + " is coming to " + location + " anytime soon..." + size
           };
         }
         res.send(body)
