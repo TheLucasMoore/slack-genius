@@ -52,7 +52,7 @@ app.post('/album', function(req, res){
       var data = JSON.parse(body);
       var body;
 
-      if (data.albums.items.size > 0) {
+      if (data.albums.items.length > 0) {
         var albumName = data.albums.items[0].name
         var albumLink = data.albums.items[0].external_urls.spotify
         var albumArt = data.albums.items[0].images[0].url
