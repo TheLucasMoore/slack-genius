@@ -91,6 +91,7 @@ app.post('/concert', function(req, res){
   request(locationUrl, function (error, response, body) {
     var locationData = JSON.parse(body);
     var locationId = locationData.resultsPage.results.location[0].metroArea.id
+    console.log(locationId)
     var url = 'http://api.songkick.com/api/3.0/events.json?apikey=' + process.env.SONGKICK_API + '&artist_name=' + concertArtist + 'location=sk:' + locationId
 
     request(url, function (error, response, body) {
@@ -118,7 +119,7 @@ app.post('/concert', function(req, res){
         } else {
           body = {
           response_type: "in_channel",
-          text: "It doesn't seem like " + artist + " is coming to " + location + " anytime soon..."
+          text: "It doesn't seem like " + artist + " is coming to " + locationId + " anytime soon..."
           };
         }
         res.send(body)
