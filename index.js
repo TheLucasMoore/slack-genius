@@ -54,18 +54,17 @@ app.post('/album', function(req, res){
       var albumArt = data.albums.items[0].images[0].url
     }
     var body = {
-        "response_type": "in_channel",
-        "text": albumLink,
-        "attachments": [
-        {
-          "title": albumName,
-          "title_link": albumLink,
-          "image_url": albumArt
-        }
-        ]
-      };
-      res.send(body);
-    }
+      "response_type": "in_channel",
+      "text": albumLink,
+      "attachments": [
+      {
+        "title": albumName,
+        "title_link": albumLink,
+        "image_url": albumArt
+      }
+      ]
+    };
+    res.send(body);
 }
 
 app.post('/genius', function(req, res){
