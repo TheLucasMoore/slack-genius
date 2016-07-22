@@ -90,7 +90,7 @@ app.post('/concert', function(req, res){
 
   var url = 'http://api.songkick.com/api/3.0/events.json?apikey=' + process.env.SONGKICK_API + '&artist_name=' + concertArtist + 'location=clientip'
 
-    request(locationUrl, function (error, reponse, body) {
+    request(locationUrl, function (error, response, body) {
       if (!error && response.statusCode == 200 && body !== null) {
         var data = JSON.parse(body);
         var locationId = data.resultsPage.results.location[0].metroArea.id
