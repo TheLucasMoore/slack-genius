@@ -88,44 +88,42 @@ app.post('/concert', function(req, res){
 
   var locationUrl = 'http://api.songkick.com/api/3.0/search/locations.json?query=' + location + '&apikey=' + process.env.SONGKICK_API
 
-    request(locationUrl, function (error, response, body) {
+  request(locationUrl, function (error, response, body) {
+    var locationData = JSON.parse(body);
+    var locationId = locationData.resultsPage.results.location[0].metroArea.id
+    var url = 'http://api.songkick.com/api/3.0/events.json?apikey=' + process.env.SONGKICK_API + '&artist_name=' + concertArtist + 'location=sk:' + locationId
+
+    request(url, function (error, response, body) {
       if (!error && response.statusCode == 200 && body !== null) {
         var data = JSON.parse(body);
-        var locationId = data.resultsPage.results.location[0].metroArea.id
-        var url = 'http://api.songkick.com/api/3.0/events.json?apikey=' + process.env.SONGKICK_API + '&artist_name=' + concertArtist + 'location=sk:' + locationId
+        var results = data.resultsPage.results
+        var size = data.resultsPage.totalEntries
+        var body;
 
-      request(url, function (error, response, body) {
-        if (!error && response.statusCode == 200 && body !== null) {
-          var data = JSON.parse(body);
-          var results = data.resultsPage.results
-          var size = data.resultsPage.totalEntries
-          var body;
+        if (parseInt(size) >= 1) {
+          var eventType = results.event[0].type
+          var displayName = results.event[0].displayName
+          var uri = results.event[0].uri
 
-          if (parseInt(size) >= 1) {
-            var eventType = results.event[0].type
-            var displayName = results.event[0].displayName
-            var uri = results.event[0].uri
+          body = {
+          "response_type": "in_channel",
+          "text": "I found a " + eventType,
+          "attachments": [
+          {
+            "title": displayName,
+            "title_link": uri
+            }]
+          };
 
-            body = {
-            "response_type": "in_channel",
-            "text": "I found a " + eventType,
-            "attachments": [
-            {
-              "title": displayName,
-              "title_link": uri
-              }]
-            };
-
-          } else {
-            body = {
-            response_type: "in_channel",
-            text: "It doesn't seem like " + artist + " is coming to " + location + " anytime soon..."
-            };
-          }
-          res.send(body)
+        } else {
+          body = {
+          response_type: "in_channel",
+          text: "It doesn't seem like " + artist + " is coming to " + location + " anytime soon..."
+          };
         }
-      })
-    };
+        res.send(body)
+      }
+    })
   })
 });
 
