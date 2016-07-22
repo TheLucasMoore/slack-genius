@@ -80,6 +80,48 @@ app.post('/genius', function(req, res){
   });
 });
 
+app.post('/concert', function(req, res){
+  var artist = req.body.text.replace(" ", "+")
+  var url = 'http://api.songkick.com/api/3.0/events.json?apikey=' + process.env.SONGKICK_API + '&artist_name=' + artist + 'location=clientip'
+
+  request(url, function (error, response, body) {
+    if (!error && response.statusCode == 200 && body !== null) {
+      var data = JSON.parse(body);
+      var results = data.results
+      var body;
+
+      if (results.length > 0) {
+        var eventType = results.event[0].type
+        var displayName = results.event[0].displayName
+        var uri = results.event[0].uri
+
+        body = {
+        "response_type": "in_channel",
+        "attachments": [
+        {
+          "title": displayName,
+          "title_link": uri
+          }]
+        };
+      } else {
+        body = {
+        response_type: "in_channel",
+        text: "It doesn't seem like " + req.body.text + "is coming to your city anytime soon..."
+        };
+      }
+      
+      res.send(body)
+    }
+    else {
+      var body = {
+        response_type: "in_channel",
+        text: "There was an error!"
+      };
+      res.send(body)
+    }
+  })
+});
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
