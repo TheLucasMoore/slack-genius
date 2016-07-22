@@ -91,16 +91,16 @@ app.post('/concert', function(req, res){
   request(locationUrl, function (error, response, body) {
     var locationData = JSON.parse(body);
     var locationId = locationData.resultsPage.results.location[0].metroArea.id
-    var url = 'http://api.songkick.com/api/3.0/events.json?apikey=' + process.env.SONGKICK_API + '&artist_name=' + concertArtist + 'location=sk:' + locationId
+    var url = 'https://api.songkick.com/api/3.0/events.json?apikey=' + process.env.SONGKICK_API + '&artist_name=' + concertArtist + '&location=sk:' + locationId
 
     request(url, function (error, response, body) {
       if (!error && response.statusCode == 200 && body !== null) {
         var data = JSON.parse(body);
-        var results = data.resultsPage.results
-        var size = data.resultsPage.totalEntries
+        var results = data.resultsPage.results;
+        var size = data.resultsPage.totalEntries;
         var body;
 
-        if (parseInt(size) !== 0) {
+        if (size !== 0) {
           var eventType = results.event[0].type
           var displayName = results.event[0].displayName
           var uri = results.event[0].uri
