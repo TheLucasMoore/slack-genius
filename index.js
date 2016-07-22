@@ -90,7 +90,7 @@ app.post('/concert', function(req, res){
       var results = data.results
       var body;
 
-      if (Object.keys(results).length > 0) {
+      // if (results.length > 0) {
         var eventType = results.event[0].type
         var displayName = results.event[0].displayName
         var uri = results.event[0].uri
@@ -103,12 +103,12 @@ app.post('/concert', function(req, res){
           "title_link": uri
           }]
         };
-      } else {
-        body = {
-        response_type: "in_channel",
-        text: "It doesn't seem like " + req.body.text + "is coming to your city anytime soon..."
-        };
-      }
+      // } else {
+      //   body = {
+      //   response_type: "in_channel",
+      //   text: "It doesn't seem like " + req.body.text + "is coming to your city anytime soon..."
+      //   };
+      // }
 
       res.send(body)
     }
