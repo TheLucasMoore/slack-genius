@@ -81,49 +81,64 @@ app.post('/genius', function(req, res){
 });
 
 app.post('/concert', function(req, res){
-  var concertArtist = req.body.text.replace(" ", "+")
+  var text = req.body.text.split(",")
+  var location = text[0];
+  var artist = text[1];
+  var concertArtist = artist.replace(" ", "+")
+
+  var locationUrl = 'http://api.songkick.com/api/3.0/search/locations.json?query=' + location + '&apikey=' + process.env.SONGKICK_API
+
   var url = 'http://api.songkick.com/api/3.0/events.json?apikey=' + process.env.SONGKICK_API + '&artist_name=' + concertArtist + 'location=clientip'
 
-  request(url, function (error, response, body) {
-    if (!error && response.statusCode == 200 && body !== null) {
-      var data = JSON.parse(body);
-      var results = data.resultsPage.results
-      // var ip = data.resultsPage.clientLocation.ip
-      // var metroArea = data.resultsPage.clientLocation.metroAreaId
-      var size = data.resultsPage.totalEntries
-      var body;
+    request(locationUrl, function (error, reponse, body) {
+      if (!error && response.statusCode == 200 && body !== null) {
+        var data = JSON.parse(body);
+        var locationId = data.resultsPage.results.location[0].metroArea.id
 
-      if (size > 0) {
-        var eventType = results.event[0].type
-        var displayName = results.event[0].displayName
-        var uri = results.event[0].uri
-
-        body = {
-        "response_type": "in_channel",
-        "text": "I found a " + eventType,
-        "attachments": [
-        {
-          "title": displayName,
-          "title_link": uri
-          }]
-        };
-      } else {
-        body = {
-        response_type: "in_channel",
-        text: "It doesn't seem like " + req.body.text + " is coming to " + "metroArea" + " anytime soon..."
-        };
-      }
-      res.send(body)
-    }
-    else {
-      var body = {
-        response_type: "in_channel",
-        text: "There was an error!"
+        res.send(locationId);
       };
-      res.send(body)
-    }
-  })
-});
+    })
+
+//   request(url, function (error, response, body) {
+//     if (!error && response.statusCode == 200 && body !== null) {
+//       var data = JSON.parse(body);
+//       var results = data.resultsPage.results
+//       // var ip = data.resultsPage.clientLocation.ip
+//       // var metroArea = data.resultsPage.clientLocation.metroAreaId
+//       var size = data.resultsPage.totalEntries
+//       var body;
+
+//       if (size > 0) {
+//         var eventType = results.event[0].type
+//         var displayName = results.event[0].displayName
+//         var uri = results.event[0].uri
+
+//         body = {
+//         "response_type": "in_channel",
+//         "text": "I found a " + eventType,
+//         "attachments": [
+//         {
+//           "title": displayName,
+//           "title_link": uri
+//           }]
+//         };
+//       } else {
+//         body = {
+//         response_type: "in_channel",
+//         text: "It doesn't seem like " + req.body.text + " is coming to " + "metroArea" + " anytime soon..."
+//         };
+//       }
+//       res.send(body)
+//     }
+//     else {
+//       var body = {
+//         response_type: "in_channel",
+//         text: "There was an error!"
+//       };
+//       res.send(body)
+//     }
+//   })
+// });
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
