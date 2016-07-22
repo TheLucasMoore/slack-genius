@@ -16,6 +16,10 @@ var errorBody = { // in the club gettin' tipsy. </50centlyrics>
   text: "There was an error!"
 };
 
+app.get('/auth', function(req, res){
+  res.send("Yay, you did it!")
+})
+
 app.post('/artist', function(req, res){
   var artist = req.body.text.replace(" ", "+")
   var url = 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artist + '&api_key=' + process.env.LAST_FM + '&format=json'
