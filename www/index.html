@@ -31,8 +31,11 @@
           <img src="images/mewsic.gif">
           <p>
           Let the Mewsic Bot come and blast some tunes at you. Mewsic can tell you about a new artist,
-         grab song lyrics and find local concert dates, all from within Slack. Read on to see all the features.
+         grab song lyrics and find local concert dates, all from within Slack through the power of custom slash commands.
+          Read on to see all the features.
           </p>
+          <h1>
+          <iframe width="420" height="315" src="https://www.youtube.com/embed/ZBwZZ_ZbHfA" frameborder="0" allowfullscreen></iframe></h1>
           <a href="https://slack.com/oauth/authorize?scope=incoming-webhook,commands&client_id=55144073894.61379720311">
           <img alt="Add to Slack" src="images/slack.png"></a>
         </section>
@@ -42,14 +45,31 @@
   <div class="row">
       <div class="twelve columns">
         <section id="spotify" data-aos="zoom-in">
-          <h2>/Spotify Slash Command</h2>
+          <h2>/Artist Slash Command</h2>
           <p>
           When you discover an amazing new artist, it's now easy to tell everyone. After installing the Mewsic Bot simply type:<br><br>
-          /spotify *ARTIST NAME*<br><br>
-         into your Slack Channel. and Mew will use it's mystical powers to send you the band biography and embed their top Spotify tracks right into the channel, so everyone can realize instantly that you have awesome taste in music. The response looks like this:
+          /artist *ARTIST NAME*<br><br>
+         Mew will use it's mystical powers to send you the band biography and embed their top Spotify tracks right into the channel, so everyone can realize instantly that you have awesome taste in music. The response looks like this:
           </p>
           <img src="images/spotify.gif">
-          <p>Convinced yet?</p>
+          <h3>Convinced yet?</h3>
+          <a href="https://slack.com/oauth/authorize?scope=incoming-webhook,commands&client_id=55144073894.61379720311">
+          <img alt="Add to Slack" src="images/slack.png"></a>
+        </section>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="twelve columns">
+        <section id="spotify" data-aos="zoom-in">
+          <h2>/Album Slash Command</h2>
+          <p>
+          You can also share a whole album with a single command.<br><br>
+          /album *ALBUM NAME*<br><br>
+          Now everyone can get the samples of the tracks and open the album in Spotify.
+          </p>
+          <img src="images/spotify.gif">
+          <h3>Ready for musical super powers?</h3>
           <a href="https://slack.com/oauth/authorize?scope=incoming-webhook,commands&client_id=55144073894.61379720311">
           <img alt="Add to Slack" src="images/slack.png"></a>
         </section>
@@ -66,7 +86,7 @@
           Now you'll be sent the Genius.com link to that song, so you can pour over the spiritual depths of the song.
           </p>
           <a href="http://genius.com/The-tallest-man-on-earth-love-is-all-lyrics"><img src="images/lyrics.png"></a>
-          <p>You can install it here:</p>
+          <h3>You can install this beauty in a few clicks:</h3>
           <a href="https://slack.com/oauth/authorize?scope=incoming-webhook,commands&client_id=55144073894.61379720311">
           <img alt="Add to Slack" src="images/slack.png"></a>
         </section>
@@ -79,12 +99,14 @@
           <h2>/Concerts Command</h2>
           <p>
           Music is best when it's live. Get outside and see your favorite bands in your town. You can request information on any band coming to your city with the /concerts command.<br><br>
-          /concerts *YOUR CITY (artist)*<br><br>
-          This sends back the top concerts in your town, or if you add an artist it let's you know when they'll be in town. Makin' dreams a reality, eh?
+          /concerts *YOUR CITY, ARTIST*<br><br>
+          (take note of the comma. That's super important for the command to work properly).<br>
+          This sends back the upcoming concert dates for that group in your city. Mad props to Songkick for their amazing API.
           </p>
-          <p>Grab it for your team!</p>
+          <h3>Grab it for your team!</h3>
           <a href="https://slack.com/oauth/authorize?scope=incoming-webhook,commands&client_id=55144073894.61379720311">
           <img alt="Add to Slack" src="images/slack.png"></a>
+          <img src="images/songkick.png">
         </section>
       </div>
     </div>

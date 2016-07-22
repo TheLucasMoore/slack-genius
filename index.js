@@ -32,7 +32,7 @@ app.post('/artist', function(req, res){
     
       var body = {
       response_type: "in_channel",
-      text: bio[0] + spotlink,
+      text: bio[0] + "... " + spotlink,
       };
       res.send(body)
       })
@@ -87,21 +87,25 @@ app.post('/genius', function(req, res){
   request(parsed_url, function (error, response, body) {
     if (!error && response.statusCode == 200 && body !== null && response !== null) {
       var data = JSON.parse(body);
-      var song_url = data.response.hits[0].result.url;
-      var song_title = data.response.hits[0].result.full_title
-      var song_image = data.response.hits[0].result.header_image_thumbnail_url;
 
-      var body = {
-        "response_type": "in_channel",
-        "attachments": [
-        {
-          "title": song_title,
-          "title_link": song_url,
-          "image_url": song_image
-        }
-        ]
-      };
-      res.send(body);
+      if (data.response.hits.length > 0) {
+        var song_url = data.response.hits[0].result.url;
+        var song_title = data.response.hits[0].result.full_title
+        var song_image = data.response.hits[0].result.header_image_thumbnail_url;
+
+        var body = {
+          "response_type": "in_channel",
+          "attachments": [
+          {
+            "title": song_title,
+            "title_link": song_url,
+            "image_url": song_image
+          }
+          ]
+        };
+
+        res.send(body);
+      }
     }
     else {
       res.send(errorBody)

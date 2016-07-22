@@ -409,6 +409,10 @@ there.
     width: 200px;
   }
 
+  iframe {
+    display: none;
+  }
+
   header h1 {
     font-size: 30px
   }
