@@ -98,12 +98,10 @@ app.post('/concert', function(req, res){
         if (!error && response.statusCode == 200 && body !== null) {
           var data = JSON.parse(body);
           var results = data.resultsPage.results
-          // var ip = data.resultsPage.clientLocation.ip
-          // var metroArea = data.resultsPage.clientLocation.metroAreaId
           var size = data.resultsPage.totalEntries
           var body;
 
-          if (size > 0) {
+          if (parseInt(size) >= 1) {
             var eventType = results.event[0].type
             var displayName = results.event[0].displayName
             var uri = results.event[0].uri
@@ -117,19 +115,13 @@ app.post('/concert', function(req, res){
               "title_link": uri
               }]
             };
+
           } else {
             body = {
             response_type: "in_channel",
-            text: "It doesn't seem like " + req.body.text + " is coming to " + "metroArea" + " anytime soon..."
+            text: "It doesn't seem like " + artist + " is coming to " + location + " anytime soon..."
             };
           }
-          res.send(body)
-        }
-        else {
-          var body = {
-            response_type: "in_channel",
-            text: "There was an error!"
-          };
           res.send(body)
         }
       })
