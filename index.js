@@ -87,10 +87,10 @@ app.post('/concert', function(req, res){
   request(url, function (error, response, body) {
     if (!error && response.statusCode == 200 && body !== null) {
       var data = JSON.parse(body);
-      var results = data.results
+      var results = data.resultsPage.results
       var body;
 
-      // if (results.length > 0) {
+      if (results.length > 0) {
         var eventType = results.event[0].type
         var displayName = results.event[0].displayName
         var uri = results.event[0].uri
@@ -103,12 +103,12 @@ app.post('/concert', function(req, res){
           "title_link": uri
           }]
         };
-      // } else {
-      //   body = {
-      //   response_type: "in_channel",
-      //   text: "It doesn't seem like " + req.body.text + "is coming to your city anytime soon..."
-      //   };
-      // }
+      } else {
+        body = {
+        response_type: "in_channel",
+        text: "It doesn't seem like " + req.body.text + "is coming to your city anytime soon..."
+        };
+      }
 
       res.send(body)
     }
