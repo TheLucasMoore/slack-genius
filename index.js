@@ -66,7 +66,7 @@ app.post('/album', function(req, res){
     };
     res.send(body);
   });
-}
+});
 
 app.post('/genius', function(req, res){
   var parsed_url = url.format({
