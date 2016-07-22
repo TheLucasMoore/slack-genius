@@ -52,8 +52,9 @@ app.post('/album', function(req, res){
       var albumName = data.albums.items[0].name
       var albumLink = data.albums.items[0].external_urls.spotify
       var albumArt = data.albums.items[0].images[0].url
+      var body
 
-      var body = {
+      body = {
         "response_type": "in_channel",
         "text": albumLink,
         "attachments": [
@@ -64,12 +65,13 @@ app.post('/album', function(req, res){
         ]
         };
     } else {
-      var body = {
+      body = {
         response_type: "in_channel",
         text: "There was an error! " + error
       };
     res.send(body);
-  };
+    }
+  });
 });
 
 app.post('/genius', function(req, res){
