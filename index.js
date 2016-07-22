@@ -88,17 +88,19 @@ app.post('/concert', function(req, res){
     if (!error && response.statusCode == 200 && body !== null) {
       var data = JSON.parse(body);
       var results = data.resultsPage.results
-      // var ip = data.resultsPage.clientLocation.ip
+      var ip = data.resultsPage.clientLocation.ip
       var metroArea = data.resultsPage.clientLocation.metroAreaId
+      var size = data.resultsPage.totalEntries
       var body;
 
-      if (results.length > 0) {
+      if (size > 0) {
         var eventType = results.event[0].type
         var displayName = results.event[0].displayName
         var uri = results.event[0].uri
 
         body = {
         "response_type": "in_channel",
+        "text": "I found a " + eventType,
         "attachments": [
         {
           "title": displayName,
