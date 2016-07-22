@@ -17,7 +17,7 @@ var errorBody = { // in the club gettin' tipsy. </50centlyrics>
 };
 
 app.get('/auth', function(req, res){
-  var token = params.access_token
+  var token = params.code
   res.send("Yay, you did it!" + token)
 })
 
