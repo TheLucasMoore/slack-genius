@@ -100,11 +100,11 @@ app.post('/concert', function(req, res){
         var size = data.resultsPage.totalEntries
         var body;
 
-        if (size !== 0) {
+        if (parseInt(size) !== 0) {
           var eventType = results.event[0].type
           var displayName = results.event[0].displayName
           var uri = results.event[0].uri
-
+          
           body = {
           "response_type": "in_channel",
           "text": "I found a " + eventType,
@@ -114,11 +114,10 @@ app.post('/concert', function(req, res){
             "title_link": uri
             }]
           };
-
         } else {
           body = {
           response_type: "in_channel",
-          text: "It doesn't seem like " + artist + " is coming to " + locationId + " anytime soon..."
+          text: "It doesn't seem like " + artist + " is coming to " + location + " anytime soon..."
           };
         }
         res.send(body)
