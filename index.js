@@ -55,15 +55,16 @@ app.get('/slacked', function(req, res){
   });
 
   request(parsed_url, function (error, response, body) {
+    if (!error && response.statusCode == 200 && body !== null && response !== null) {
       var data = JSON.parse(body);
       var access_token = data.access_token;
       res.send(access_token)
       res.send(JSON.stringify(req.query, null, 2))
+    }
   })
 })
 
 app.post('/artist', function(req, res){
-// if (req.body.token == process.env.SLACK_STATE) { 
   var artist = req.body.text.replace(" ", "+")
   var url = 'https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artist + '&api_key=' + process.env.LAST_FM + '&format=json'
   var spotifyUrl = "https://api.spotify.com/v1/search?q=" + artist + "&type=artist"
@@ -88,9 +89,6 @@ app.post('/artist', function(req, res){
       res.send(errorBody)
     }
   })
-  //} else {
-  //  res.end("That's not coming from SLACK my friend. Nice try though.")
-  //}
 });
 
 app.post('/album', function(req, res){
