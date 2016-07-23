@@ -1,5 +1,5 @@
 var request = require('supertest');
-var mocha =
+var mocha
 
 describe('loading express', function () {
   var server;

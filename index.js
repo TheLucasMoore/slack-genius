@@ -7,6 +7,12 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// set up Grant
+var Grant = require('grant-express')
+  , grant = new Grant(require('./config.json'))
+// app.use(session({secret: process.env.SECRET }))
+app.use(grant)
+
 app.set('port', (process.env.PORT || 9001));
 
 app.use('/', express.static('www'));
@@ -16,9 +22,8 @@ var errorBody = { // in the club gettin' tipsy. </50centlyrics>
   text: "There was an error!"
 };
 
-app.get('/auth', function(req, res){
-  var token = params.code
-  res.send("Yay, you did it!" + token)
+app.get('/slacked', function(req, res){
+  res.end(JSON.stringify(req.query, null, 2))
 })
 
 app.post('/artist', function(req, res){
