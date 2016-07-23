@@ -7,34 +7,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// // set up Grant
-// var session = require('express-session')
-// var grantConfig = {
-//   "server": {
-//     "protocol": "https",
-//     "host": "mewsic.herokuapp.com"
-//   },
-//   "slack": {
-//     "key": process.env.SLACK_CLIENT,
-//     "secret": process.env.SLACK_SECRET,
-//     "callback": "/slacked",
-//     "scope": [
-//       "incoming-webhook",
-//       "commands"
-//     ]
-//   }
-// }
-
-// var Grant = require('grant-express')
-//   , grant = new Grant(grantConfig)
-// app.use(session({secret: 'supersecret' }))
-// app.use(grant)
-
 app.set('port', (process.env.PORT || 9001));
-
-// ###### START ALL THE ROUTES ######## \\
-
-app.use('/', express.static('www'));
 
 // set one variable for error handling with slack requests
 var errorBody = { // in the club gettin' tipsy. </50centlyrics>
@@ -42,6 +15,11 @@ var errorBody = { // in the club gettin' tipsy. </50centlyrics>
   text: "There was an error! Check your spelling?"
 };
 
+// ###### START ALL THE ROUTES ####### \\
+
+app.use('/', express.static('www'));
+
+// Oauth Flow and redirection
 app.get('/slacked', function(req, res){
   var code = req.param('code');
   var data = {
