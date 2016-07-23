@@ -43,7 +43,7 @@ var errorBody = { // in the club gettin' tipsy. </50centlyrics>
 };
 
 app.get('/slacked', function(req, res){
-  var code = req.query.code;
+  var code = req.param.code;
   var parsed_url = url.format({
     pathname: 'https://slack.com/api/oauth.access',
     query: {
@@ -55,7 +55,7 @@ app.get('/slacked', function(req, res){
   });
 
   request(parsed_url, function (error, response, body) {
-    if (!error && response.statusCode == 200 && body !== null && response !== null) {
+    if (!error && response.statusCode == 200) {
       var data = JSON.parse(body);
       var access_token = data.access_token;
       res.send(access_token)
