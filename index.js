@@ -62,6 +62,7 @@ app.get('/slacked', function(req, res){
   // res.end(JSON.stringify(req.query, null, 2))
     }
   })
+  res.send(access_token)
 })
 
 app.post('/artist', function(req, res){
