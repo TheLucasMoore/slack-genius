@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // set up Grant
 var Grant = require('grant-express')
-  , grant = new Grant(require('config.json'))
+  , grant = new Grant(require('/config.json'))
 // app.use(session({secret: process.env.SECRET }))
 app.use(grant)
 
