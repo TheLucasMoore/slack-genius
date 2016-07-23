@@ -76,7 +76,7 @@ app.post('/artist', function(req, res){
       
       request(spotifyUrl, function (error, response, body) {
         var spotData = JSON.parse(body);
-        if (spotData.artist.items.length == 0) {
+        if (spotData.artists.items.length == 0) {
           res.send(errorBody)
         }
         var spotlink = spotData.artists.items[0].external_urls.spotify
