@@ -4,7 +4,7 @@ _A Slackbot that searches genius.com and more!_.
 
 This Slackbot that receives input through a few [slash commands](https://api.slack.com/slash-commands) and sends a request to an API.
 
-I started [here](https://goo.gl/wDyayI](https://goo.gl/wDyayI).
+I started [here](https://goo.gl/wDyayI).
 
 ## License
 

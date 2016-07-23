@@ -2,15 +2,32 @@ var express = require('express');
 var app = express();
 var url = require('url');
 var request = require('request');
+var session = require('express-session')
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // set up Grant
+var grantConfig = {
+  "server": {
+    "protocol": "https",
+    "host": "mewsic.herokuapp.com"
+  },
+  "slack": {
+    "key": process.env.SLACK_CLIENT,
+    "secret": process.env.SLACK_SECRET,
+    "callback": "/slacked",
+    "scope": [
+      "incoming-webhook",
+      "commands"
+    ]
+  }
+}
+
 var Grant = require('grant-express')
-  , grant = new Grant(require('./config.json'))
-// app.use(session({secret: process.env.SECRET }))
+  , grant = new Grant(grantConfig)
+app.use(session({secret: 'supersecret' }))
 app.use(grant)
 
 app.set('port', (process.env.PORT || 9001));
