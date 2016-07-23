@@ -32,15 +32,36 @@ app.use(grant)
 
 app.set('port', (process.env.PORT || 9001));
 
+// ###### START ALL THE ROUTES ######## \\
+
 app.use('/', express.static('www'));
 
+// set one variable for error handling with slack requests
 var errorBody = { // in the club gettin' tipsy. </50centlyrics>
   response_type: "in_channel",
   text: "There was an error!"
 };
 
 app.get('/slacked', function(req, res){
-  res.end(JSON.stringify(req.query, null, 2))
+  var code = req.query.code;
+  var parsed_url = url.format({
+    pathname: 'https://slack.com/api/oauth.access',
+    query: {
+      client_id: process.env.SLACK_CLIENT,
+      client_secret: process.env.SLACK_SECRET,
+      code: code,
+      redirect_uri: "https://mewsic.herokuapp/slacked"
+    }
+  });
+
+  request(parsed_url, function (error, response, body) {
+    if (!error && response.statusCode == 200 && body !== null && response !== null) {
+      var data = JSON.parse(body);
+      var access_token = data.access_token;
+      console.log(access_token)
+  // res.end(JSON.stringify(req.query, null, 2))
+    }
+  })
 })
 
 app.post('/artist', function(req, res){
