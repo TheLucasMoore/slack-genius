@@ -44,18 +44,15 @@ var errorBody = { // in the club gettin' tipsy. </50centlyrics>
 
 app.get('/slacked', function(req, res){
   var code = req.param('code');
-  res.send(code);
-
-  var slackUrl = 'https://slack.com/api/oauth.access'
+  // var slackUrl = 'https://slack.com/api/oauth.access'
   var data = {
     form: {
       client_id: process.env.SLACK_CLIENT,
       client_secret: process.env.SLACK_SECRET,
       code: code
     }
-  };
-
-  request.post(slackURL, data, function (error, response, body) {
+  }
+  request.post('https://slack.com/api/oauth.access', data, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       res.redirect('/');
     }
