@@ -39,7 +39,7 @@ var errorBody = { // in the club gettin' tipsy. </50centlyrics>
   text: "There was an error!"
 };
 
-app.get('/slacked', function(req, res){
+app.get('/connect/slack/callback', function(req, res){
   res.end(JSON.stringify(req.query, null, 2))
 })
 
