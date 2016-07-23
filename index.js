@@ -58,11 +58,10 @@ app.get('/slacked', function(req, res){
     if (!error && response.statusCode == 200 && body !== null && response !== null) {
       var data = JSON.parse(body);
       var access_token = data.access_token;
-      res.send(access_token)
-  // res.end(JSON.stringify(req.query, null, 2))
+      res.end(access_token)
+      res.end(JSON.stringify(req.query, null, 2))
     }
   })
-  res.send(access_token)
 })
 
 app.post('/artist', function(req, res){
