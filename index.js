@@ -2,33 +2,33 @@ var express = require('express');
 var app = express();
 var url = require('url');
 var request = require('request');
-var session = require('express-session')
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// set up Grant
-var grantConfig = {
-  "server": {
-    "protocol": "https",
-    "host": "mewsic.herokuapp.com"
-  },
-  "slack": {
-    "key": process.env.SLACK_CLIENT,
-    "secret": process.env.SLACK_SECRET,
-    "callback": "/slacked",
-    "scope": [
-      "incoming-webhook",
-      "commands"
-    ]
-  }
-}
+// // set up Grant
+// var session = require('express-session')
+// var grantConfig = {
+//   "server": {
+//     "protocol": "https",
+//     "host": "mewsic.herokuapp.com"
+//   },
+//   "slack": {
+//     "key": process.env.SLACK_CLIENT,
+//     "secret": process.env.SLACK_SECRET,
+//     "callback": "/slacked",
+//     "scope": [
+//       "incoming-webhook",
+//       "commands"
+//     ]
+//   }
+// }
 
-var Grant = require('grant-express')
-  , grant = new Grant(grantConfig)
-app.use(session({secret: 'supersecret' }))
-app.use(grant)
+// var Grant = require('grant-express')
+//   , grant = new Grant(grantConfig)
+// app.use(session({secret: 'supersecret' }))
+// app.use(grant)
 
 app.set('port', (process.env.PORT || 9001));
 
@@ -44,7 +44,6 @@ var errorBody = { // in the club gettin' tipsy. </50centlyrics>
 
 app.get('/slacked', function(req, res){
   var code = req.param('code');
-  // var slackUrl = 'https://slack.com/api/oauth.access'
   var data = {
     form: {
       client_id: process.env.SLACK_CLIENT,
@@ -60,6 +59,9 @@ app.get('/slacked', function(req, res){
 })
 
 app.post('/artist', function(req, res){
+  if (req.body.token !== process.env.SLACK_STATE) {
+    res.send("This request isn't coming from Slack! Install the app plz.")
+  } else {
   var artist = req.body.text.replace(" ", "+")
   var url = 'https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artist + '&api_key=' + process.env.LAST_FM + '&format=json'
   var spotifyUrl = "https://api.spotify.com/v1/search?q=" + artist + "&type=artist"
@@ -88,6 +90,7 @@ app.post('/artist', function(req, res){
       res.send(errorBody)
     }
   })
+  }
 });
 
 app.post('/album', function(req, res){
