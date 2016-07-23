@@ -89,7 +89,7 @@ if (req.body.token == process.env.SLACK_STATE) {
     else {
       res.send(errorBody)
     }
-  }})
+  })
   } else {
     res.end("That's not coming from SLACK my friend. Nice try though.")
   }
