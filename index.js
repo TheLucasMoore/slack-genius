@@ -39,7 +39,7 @@ app.use('/', express.static('www'));
 // set one variable for error handling with slack requests
 var errorBody = { // in the club gettin' tipsy. </50centlyrics>
   response_type: "in_channel",
-  text: "There was an error!"
+  text: "There was an error! Check your spelling?"
 };
 
 app.get('/slacked', function(req, res){
@@ -76,6 +76,9 @@ app.post('/artist', function(req, res){
       
       request(spotifyUrl, function (error, response, body) {
         var spotData = JSON.parse(body);
+        if (spotData.artist.items.length == 0) {
+          res.send(errorBody)
+        }
         var spotlink = spotData.artists.items[0].external_urls.spotify
     
       var body = {
