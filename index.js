@@ -17,7 +17,7 @@ var grantConfig = {
   "slack": {
     "key": process.env.SLACK_CLIENT,
     "secret": process.env.SLACK_SECRET,
-    "callback": "/slack/callback",
+    "callback": "/slacked",
     "scope": [
       "incoming-webhook",
       "commands"
@@ -32,16 +32,14 @@ app.use(grant)
 
 app.set('port', (process.env.PORT || 9001));
 
+app.use('/', express.static('www'));
+
 var errorBody = { // in the club gettin' tipsy. </50centlyrics>
   response_type: "in_channel",
   text: "There was an error!"
 };
 
-// ROUTER PATHS
-
-app.use('/', express.static('www'));
-
-app.get('/connect/slack/callback', function(req, res){
+app.get('/slacked', function(req, res){
   res.end(JSON.stringify(req.query, null, 2))
 })
 
