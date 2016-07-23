@@ -17,7 +17,7 @@ var grantConfig = {
   "slack": {
     "key": process.env.SLACK_CLIENT,
     "secret": process.env.SLACK_SECRET,
-    "callback": "/connect/slack/callback",
+    "callback": "/slack/callback",
     "scope": [
       "incoming-webhook",
       "commands"
