@@ -78,7 +78,7 @@ app.post('/artist', function(req, res){
         var spotData = JSON.parse(body);
         if (spotData.artists.items.length == 0) {
           res.send(errorBody)
-        }
+        } else {
         var spotlink = spotData.artists.items[0].external_urls.spotify
     
       var body = {
@@ -86,6 +86,7 @@ app.post('/artist', function(req, res){
       text: bio[0] + "... " + spotlink,
       };
       res.send(body)
+        } // else
       })
     }
     else {
