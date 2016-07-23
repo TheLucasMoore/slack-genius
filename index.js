@@ -59,7 +59,7 @@ app.get('/slacked', function(req, res){
       var data = JSON.parse(body);
       var access_token = data.access_token;
       res.send(access_token)
-      res.send(JSON.stringify(req.query, null, 2))
+      // res.send(JSON.stringify(req.query, null, 2))
     }
   })
 })
