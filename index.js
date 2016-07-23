@@ -58,15 +58,15 @@ app.get('/slacked', function(req, res){
     if (!error && response.statusCode == 200 && body !== null && response !== null) {
       var data = JSON.parse(body);
       var access_token = data.access_token;
-      res.end(access_token)
-      res.end(JSON.stringify(req.query, null, 2))
+      res.send(access_token)
+      res.send(JSON.stringify(req.query, null, 2))
     }
   })
 })
 
 app.post('/artist', function(req, res){
   var artist = req.body.text.replace(" ", "+")
-  var url = 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artist + '&api_key=' + process.env.LAST_FM + '&format=json'
+  var url = 'https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artist + '&api_key=' + process.env.LAST_FM + '&format=json'
   var spotifyUrl = "https://api.spotify.com/v1/search?q=" + artist + "&type=artist"
 
   request(url, function (error, response, body) {
@@ -167,7 +167,7 @@ app.post('/concert', function(req, res){
   var artist = text[1];
   var concertArtist = artist.replace(" ", "+")
 
-  var locationUrl = 'http://api.songkick.com/api/3.0/search/locations.json?query=' + location + '&apikey=' + process.env.SONGKICK_API
+  var locationUrl = 'https://api.songkick.com/api/3.0/search/locations.json?query=' + location + '&apikey=' + process.env.SONGKICK_API
 
   request(locationUrl, function (error, response, body) {
     var locationData = JSON.parse(body);
