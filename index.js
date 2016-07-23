@@ -45,22 +45,19 @@ var errorBody = { // in the club gettin' tipsy. </50centlyrics>
 app.get('/slacked', function(req, res){
   var code = req.param('code');
   res.send(code);
-  
-  var parsed_url = url.format({
-    pathname: 'https://slack.com/api/oauth.access',
-    query: {
+
+  var slackUrl = 'https://slack.com/api/oauth.access'
+  var data = {
+    form: {
       client_id: process.env.SLACK_CLIENT,
       client_secret: process.env.SLACK_SECRET,
-      code: code,
-      redirect_uri: "https://mewsic.herokuapp/slacked"
+      code: code
     }
-  });
+  };
 
-  request(parsed_url, function (error, response, body) {
+  request.post(slackURL, data, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      var data = JSON.parse(body);
-      var access_token = data.access_token;
-      res.send(access_token)
+      res.redirect('/');
     }
   })
 })
