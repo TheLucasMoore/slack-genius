@@ -32,7 +32,7 @@ app.get('/slacked', function(req, res){
   }
   request.post('https://slack.com/api/oauth.access', data, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      res.redirect('/success');
+      res.redirect('/');
     }
   })
 })
