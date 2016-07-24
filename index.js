@@ -38,7 +38,7 @@ app.get('/slacked', function(req, res){
 })
 
 app.get('/success', function(req, res){
-  res.sendFile('success.html', { root: path.join(__dirname, '../www') });
+  res.sendFile('success.html', { root: path.join(__dirname, '/www') });
 })
 
 app.post('/artist', function(req, res){
