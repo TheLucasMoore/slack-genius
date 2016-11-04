@@ -42,9 +42,6 @@ app.get('/success', function(req, res){
 })
 
 app.post('/artist', function(req, res){
-  if (req.body.token !== process.env.SLACK_STATE) {
-    res.send("This request isn't coming from Slack! Install the app plz.")
-  } else {
   var artist = req.body.text.replace(" ", "+")
   var url = 'https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artist + '&api_key=' + process.env.LAST_FM + '&format=json'
   var spotifyUrl = "https://api.spotify.com/v1/search?q=" + artist + "&type=artist"
@@ -53,14 +50,14 @@ app.post('/artist', function(req, res){
     if (!error && response.statusCode == 200 && body !== null) {
       var data = JSON.parse(body);
       var bio = data.artist.bio.summary.split("<a");
-      
+
       request(spotifyUrl, function (error, response, body) {
         var spotData = JSON.parse(body);
         if (spotData.artists.items.length == 0) {
           res.send(errorBody)
         } else {
         var spotlink = spotData.artists.items[0].external_urls.spotify
-    
+
       var body = {
       response_type: "in_channel",
       text: bio[0] + "... " + spotlink,
