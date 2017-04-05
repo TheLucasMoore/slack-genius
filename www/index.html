@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  
+
   <link href='https://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" type="text/css" href="aos.css" />
-  <script src="aos.js"></script> 
+  <script src="aos.js"></script>
 
   <link rel="stylesheet" type="text/css" href="index.css">
   <link rel="stylesheet" type="text/css" href="normalize.css">
@@ -13,7 +13,7 @@
   <title>Mewsic - The Magic Music Slackbot</title>
 </head>
 <body>
-  
+
   <div class="container">
     <div class="row">
       <div class="twelve columns">
@@ -27,14 +27,25 @@
     <div class="row">
       <div class="twelve columns">
         <section id="about">
-          <h2>What does this Slack Bot do?</h2>
           <img src="images/mewsic.gif">
           <p>
+          Mewsic is a Slack bot that can tell you about artists and albums,
+          grab song lyrics and find local concert dates in your city.
+          <br><br>
+          It's all done within Slack through slash commands.
           <a href="https://slack.com/oauth/authorize?scope=incoming-webhook,commands&client_id=55144073894.61379720311">
           <img alt="Add to Slack" src="images/slack.png"></a>
-          Let the Mewsic Bot come and blast some tunes at you. Mewsic can tell you about new artists and albums,
-         grab song lyrics and find local concert dates in your city. It's all done from Slack through the power of custom slash commands.
-          Read on to see all the features. This videos shows the whole installation and use of Mewsic, too. 
+          After installing, you'll have these commands available:
+          <br><br>
+          /artist *ARTIST NAME*
+          <br>
+          /album *ALBUM NAME*
+          <br>
+          /lyrics *ARTIST / SONG*
+          <br>
+          /concert *CITY, ARTIST* (requires both a comma and space)
+          <br><br>
+          Read on to see all the features. This videos shows the whole installation and use of Mewsic, too.
           </p>
           <h1>
           <iframe width="420" height="315" src="https://www.youtube.com/embed/IQsEUbiBVV8" frameborder="0" allowfullscreen></iframe>
@@ -66,9 +77,9 @@
         <section id="spotify" data-aos="zoom-in">
           <h2>/Album Slash Command</h2>
           <p>
-          You can also share a whole album with a single command.<br><br>
+          You can also share a whole album by saying:<br><br>
           /album *ALBUM NAME*<br><br>
-          Your channel now has samples of the album's tracks and can open the album in Spotify with a click.
+          You'll get back the album art and Spotify tracks from it, all playable in Slack (assuming you have Spotify).
           <img src="images/album.gif">
           </p>
           <h3>Ready for musical super powers?</h3>
@@ -83,9 +94,9 @@
         <section id="lyrics" data-aos="zoom-in">
           <h2>/Lyrics Command</h2>
           <p>
-          The music is moving you to tears and you must learn every single word! Now it's a command away. Simply say<br><br>
+          The music is moving you to tears and you must learn every single word! I know those feels. Simply say:<br><br>
           /lyrics *ARTIST SONG*<br><br>
-          Now you'll be sent the Genius.com link to that song, so you can pour over the spiritual depths of the song.
+          Now you'll be sent the Genius.com link to that song, so you can dig into the deeper meanings.
           <a href="http://genius.com/The-tallest-man-on-earth-love-is-all-lyrics"><img src="images/lyrics.png"></a>
           </p>
           <h3>You can install this beauty in a few clicks:</h3>
@@ -119,10 +130,14 @@
         <section id="how" data-aos="zoom-in">
           <h2>But how does it work?!</h2>
           <p>
-          I know, it's pretty rad. I built this Slack Bot with Node and Express. It utilizes the Spotify, Last.fm, Genius and SongKick APIs, putting them all in one place. I built this bot for my brothers and myself, but thought I should share it with the world. You can read more about the projects I build <a target="_blank" href="http://dev.thelucasmoore.com">here</a>.<br><br>
+          I know, it's pretty rad. I built this website with Node and Express, Photoshop my own HTML/CSS.
+          The actual bot endpoints are an AWS Lambda, built with <a href="https://serverless.com/" target="_blank">Serverless</a>.
+          <br>It utilizes the Spotify, Last.fm, Genius and SongKick APIs, putting them all in one place.
+          I built this bot for my brothers and myself, but thought I should share it with the world.
+          You can read more about the projects I build <a target="_blank" href="http://dev.thelucasmoore.com">here</a>.<br><br>
           <3 Lucas<br>
-          email: hey@<a href="http://thelucasmoore.com">thelucasmoore.com</a><br>
-          resume: <a href="https://learn.co/thelucasmoore/resume">here you go!</a><br>
+          email: hey (at) <a href="http://thelucasmoore.com">thelucasmoore.com</a>
+          <br><br>
           (by the way, did you find the Missingo?)
           </p>
         </section>
